@@ -14,7 +14,7 @@ private:
   std::string nucleusType;
   double atomicMass;
   int atomicNumber;
-  double lambda;
+  
   
   bool isValidNucleus(const std::string& nucleusType) const;
   bool isDecayed();
