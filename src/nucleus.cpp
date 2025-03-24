@@ -10,11 +10,11 @@
            nucleusType.find("Na") != std::string::npos;
   }
 
-  Nucleus::Nucleus() : nucleusType{"none"}, atomicMass{}, atomicNumber{}, lambda{}{} 
+  Nucleus::Nucleus() : nucleusType{"none"}, atomicMass{}, atomicNumber{}{} 
 
   // The parameterised constructor dynamically allocates the std::vector containing the four-vector elements
   Nucleus::Nucleus(const std::string &nType, double aMassIn, int aNumIn, double lambdaIn) :
-            nucleusType{nType}, atomicMass{aMassIn}, atomicNumber{aNumIn}, lambda{lambdaIn}
+            nucleusType{nType}, atomicMass{aMassIn}, atomicNumber{aNumIn}
             {
             // The parameterised constructor checks the validity of the energy component
             if (atomicMass<0) 
