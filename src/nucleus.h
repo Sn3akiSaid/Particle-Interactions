@@ -35,7 +35,11 @@ public:
   // void setPz(double pz);
 
   // Function to print Nucleus data and its memory location
-  void print_data() const;
+  // void print_data() const;
+  virtual void Nucleus::print_data() const
+  {
+   std::cout << nucleusType << std::endl;
+  }
 
   // Overloaded operator for summing 
   // Nucleus operator+(const Nucleus &other) const;

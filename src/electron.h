@@ -10,7 +10,16 @@
 
 class Electron : Particle
 {
+	private:
+	int Charge;
 	std::unique_ptr<std::vector<double>> pairProduction;
+	public:
+	Electron() : Charge{-1} {}
+	~Electron() {std::cout<<"Electron destruction"<<std::endl;}
+	void print_data()
+	{
+		std::cout<<"Electron: Charge= "<<Charge<<std::endl;
+	}
 };
 
 #endif

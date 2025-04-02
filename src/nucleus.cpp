@@ -4,7 +4,7 @@
 #include<stdexcept>
   bool Nucleus::isValidNucleus(const std::string& nType) const
   {
-    return nucleusType.find("He") != std::string::npos || 
+    return nucleusType.find("Fe") != std::string::npos || 
            nucleusType.find("Co") != std::string::npos ||
            nucleusType.find("Cs") != std::string::npos ||
            nucleusType.find("Na") != std::string::npos;
@@ -96,11 +96,7 @@
   // void Particle::setPz(double pz) {(*fourMomentum)[3]=pz;}
 
   // Function to print info about a particle 
-  void Nucleus::print_data() const
-  {
-   std::cout << nucleusType << std::endl;
-  }
-
+           
   // Particle Particle::operator+(const Particle &other) const
   // {
   //   double newE = getE() + other.getE();
