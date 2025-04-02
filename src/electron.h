@@ -8,18 +8,41 @@
 #include<cmath>
 #include<initializer_list>
 
-class Electron : Particle
+class Photon;
+
+class Electron : public Particle
 {
 	private:
-	int Charge;
-	std::unique_ptr<std::vector<double>> pairProduction;
+	int charge;
+	// double restMass = 0.511;
+	std::unique_ptr<std::vector<std::shared_ptr<Photon>>> radiation;
+
 	public:
-	Electron() : Charge{-1} {}
-	~Electron() {std::cout<<"Electron destruction"<<std::endl;}
-	void print_data()
-	{
-		std::cout<<"Electron: Charge= "<<Charge<<std::endl;
-	}
+	Electron(double eMass = 0.511, double energyIn = 0.0, int eCharge = -1);
+	~Electron() override; //{std::cout<<"Electron destruction"<<std::endl;}
+
+	int getCharge() const {return charge;}
+	double setCharge(int eCharge) {return charge = eCharge;}
+
+
+	void print_data() const override;
+	void addPhoton(const std::shared_ptr<Photon>& photon);
 };
+
+Electron::Electron(double massIn, double energyIn, int chargeIn) : 
+									 Particle(massIn, energyIn), charge(chargeIn)
+{
+	radiation = std::make_unique<std::vector<std::shared_ptr<Photon>>>();
+}
+
+Electron::~Electron()
+{
+	std::cout << "Electron destruction" << std::endl;
+}
+
+void Electron::addPhoton(const std::shared_ptr<Photon>& photon)
+{
+	radiation->push_back(photon);
+}
 
 #endif
