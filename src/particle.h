@@ -9,17 +9,26 @@
 
 class Particle
 {
-private:
+protected: // Used instead of private for the purpose of inheritance
   double restMass;
   double energy;
 
     
 public:
-  Particle();
-  ~Particle();
+  Particle(double massIn = 0.0, double energyIn = 0.0);
+  virtual ~Particle(); //virtual destructor, otherwise only base class destructor called ---> memory leaks
+
+  // Getters
+  double getRestMass() const {return restMass;}
+  double getEnergy() const {return energy;}
+
+  // Setters
+  void setRestMass(double massIn) {restMass = massIn;}
+  void setEnergy(double energyIn) {energy = energyIn;}
 };
 
-Particle::Particle()
+// Parameterized constructor
+Particle::Particle(double massIn, double energyIn) : restMass{massIn}, energy{energyIn}
 {
 }
 
