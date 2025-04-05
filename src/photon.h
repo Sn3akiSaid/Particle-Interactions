@@ -9,7 +9,7 @@
 #include<initializer_list>
 
 // Forward declaration
-class Electron; //Photon references electron and vice versa
+class Electron; 
 class Photon;
 // Forward declarations of friend functions
 // These allows other code which has #include"photon.h" to call the functions

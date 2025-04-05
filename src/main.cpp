@@ -94,7 +94,7 @@ int main()
     if(emittedPhotons.size() > 2)
     {
       cout << "\n--- Pair Production ---\n" << endl;
-      auto photon3 = emittedPhotons[10];
+      auto photon3 = emittedPhotons[2];
       // Co-60 photons with energy > 2*m_e
       auto electronPair = pairProduction(photon3);
       cout << "Created " << electronPair.size() << " particles from pair production" << endl;
