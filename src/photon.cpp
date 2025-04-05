@@ -11,8 +11,8 @@ Photon::Photon(double energyIn) : Particle(0.0, energyIn)
 Photon::~Photon(){}
 void Photon::printData() const
 {
-  std::cout << "Photon: Energy = " << getEnergy() << "Mev, "
-            << "Pair Production count = " << pairProduction->size()
+  std::cout << "photon with E = " << getEnergy() << " MeV"
+            << " | Pair Production count = " << pairProduction->size()
             << std::endl;
   Particle::printData();
 }

@@ -77,7 +77,7 @@ std::vector<std::shared_ptr<Electron>> pairProduction(const std::shared_ptr<Phot
   electrons.push_back(electron);
   electrons.push_back(positron);
 
-  std::cout << "Pair production: Photon of energy" << photonEnergy
+  std::cout << "Pair production: Photon of energy " << photonEnergy
             << " MeV created electron-positron pair, each with energy = "
             << (electronMass + excessEnergy/2) << " MeV" << std::endl;
 

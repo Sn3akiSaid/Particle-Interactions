@@ -36,25 +36,4 @@ public:
   friend std::vector<std::shared_ptr<Electron>> pairProduction(const std::shared_ptr<Photon>& photon);
 };
 
-// Photon::Photon(double energyIn) : Particle(0.0, energyIn)
-// {
-//   pairProduction = std::make_unique<std::vector<std::shared_ptr<Electron>>>();
-// }
-// Photon::~Photon()
-// {
-//   std::cout << "Photon Destruction" << std::endl;
-// }
-
-// void Photon::printData() const
-// {
-//   std::cout << "Photon: Energy = " << getEnergy() << "Pair Production count="
-//             << pairProduction->size() << std::endl;
-//   Particle::printData();
-// }
-
-// void Photon::addElectron(const std::shared_ptr<Electron>& electron)
-// {
-//   pairProduction->push_back(electron);
-// }
-
 #endif

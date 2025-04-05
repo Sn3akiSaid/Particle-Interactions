@@ -10,16 +10,13 @@ Electron::Electron(double massIn, double energyIn, int eChargeIn)
 	radiationEnergy = energyIn * 0.01;
 }
 
-Electron::~Electron()
-{
-	std::cout << "Electron destruction" << std::endl;
-}
+Electron::~Electron(){}
 
 void Electron::printData() const
 {
-	std::cout << "Electron rest mass" << getRestMass() 
-						<< " MeV, Energy = " <<getEnergy() 
-						<< "radiation = " << radiation->size() << std::endl;
+	std::cout << "Electron rest mass = " << getRestMass() 
+						<< " MeV | Energy = " <<getEnergy() 
+						<< " | Radiation counts = " << radiation->size() << std::endl;
 						
 	Particle::printData();
 }

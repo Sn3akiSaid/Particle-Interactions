@@ -41,7 +41,7 @@
     std::cout << "Nucleus: " << nucleusType 
               << " || Atomic Mass: " << atomicMass 
               << " || Atomic Number: " << atomicNumber 
-              << " || Lambda:" << lambda
+              << " || Lambda: " << lambda
               << " || Decay Status: " << (decayed ? "Yes" : "No") << std::endl;
 
     if (decayed && emittedPhoton)

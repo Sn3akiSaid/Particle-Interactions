@@ -4,7 +4,7 @@
 
 namespace Constants
 {
-  constexpr double electronMass = 0.511;
+  constexpr double electronMass = 0.511; // MeV/c^2 with c=1
 }
 
 #endif

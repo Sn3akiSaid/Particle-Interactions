@@ -48,11 +48,11 @@
 
   void StableNucleus::decay()
   {
-    std::cout << "Stable Nucleus- Cannot Decay." << std::endl;
+    std::cout << "Stable Nucleus- Cannot Decay.\n" << std::endl;
   }
 
   void StableNucleus::printData() const
   {
-    std::cout << "Stable ";
+    std::cout << "\nStable ";
     Nucleus::printData();
   }

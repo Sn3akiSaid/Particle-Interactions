@@ -39,7 +39,7 @@ std::shared_ptr<Photon> radiate(const std::shared_ptr<Electron>& electron)
   // Conservation of energy
   electron->setEnergy(electronEnergy - photonEnergy);
   electron->addPhoton(photon);
-  std::cout << "Brhemsstrahlung Radiation: Electron with initial energy " << electronEnergy
+  std::cout << "Bremsstrahlung Radiation: Electron with initial energy " << electronEnergy
             << " MeV emitted a photon with energy " << photonEnergy
             << " MeV and now has energy " << electron->getEnergy() << " MeV" << std::endl;
   return photon;

@@ -6,12 +6,9 @@ Particle::Particle(double massIn, double energyIn) : restMass{massIn}, energy{en
 {
 }
 
-Particle::~Particle()
-{
-  std::cout<<"Destroy Particle"<<std::endl;
-}
+Particle::~Particle(){}
 
 void Particle::printData() const
 {
-  std::cout << "Particle: Rest Mass = " << restMass << ", Energy = " << energy << std::endl;
+  // std::cout << "Particle: Rest Mass = " << restMass << ", Energy = " << energy << std::endl;
 }

@@ -106,8 +106,8 @@
     {
       auto photon = std::make_shared<Photon>(energy);
       setEmittedPhoton(photon);
-      std::cout << "Nucleus " << getType() << " has decayed, emitting photon with energy "
-                << energy << " MeV" << std::endl;
+      std::cout << "Nucleus " << getType() << " has decayed, emitting ";
+      
       if (photon)
       {
         photon->printData();
@@ -117,9 +117,9 @@
 
   void RadioactiveNucleus::printData() const
   {
-    std::cout << "Radioactive ";
+    std::cout << "\nRadioactive ";
     Nucleus::printData();
-    std::cout << "Half-Life:" << halfLife << " years" << std::endl;
+    std::cout << "\nHalf-Life:" << halfLife << " years" << std::endl;
 
     std::cout << "Photon energies: ";
     for (size_t i = 0; i < photonEnergies.size(); ++i)
