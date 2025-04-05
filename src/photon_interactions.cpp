@@ -6,7 +6,7 @@
 #include<memory>
 #include<stdexcept>
 
-using Constants::electronMass; // Bring electron mass from constants.h namespace
+// using Constants::electronMass; // Bring electron mass from constants.h namespace
 
 double photoelectricEffect(const std::shared_ptr<Photon>& photon)
 {
@@ -22,7 +22,7 @@ double photoelectricEffect(const std::shared_ptr<Photon>& photon)
   return energy;
 }
 
-double comptonEffect(const std::shared_ptr<Photon>& photon, double theta)
+double comptonEffect(const std::shared_ptr<Photon>& photon, double theta) // theta in radians
 {
   if (!photon)
   {
@@ -30,12 +30,14 @@ double comptonEffect(const std::shared_ptr<Photon>& photon, double theta)
     return 0.0;
   }
 
-  const double electronMass = electronMass; // in MeV/c^2 with c=1
+  const double electronMass = Constants::electronMass; // in MeV/c^2 with c=1
   double initialEnergy = photon->getEnergy();
 
   // Compton scattering formula
-  double newEnergy = initialEnergy / (1 + (initialEnergy / electronMass) * (1 - std::cos(theta)));
-
+  
+  double denominator = (1.0 + (initialEnergy / electronMass) * (1.0 - std::cos(theta)));
+  double newEnergy = initialEnergy / denominator;
+  // std::cout << initialEnergy << ", "<< electronMass<< ", " << newEnergy<< ", "<< std::cos(theta) <<std::endl;
   std::cout << "Compton Effect: Photon energy changed from " << initialEnergy
             << " MeV to " << newEnergy << " MeV, with collision angle = " << theta << " rad" << std::endl;
 
