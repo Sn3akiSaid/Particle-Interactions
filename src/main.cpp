@@ -7,7 +7,13 @@
 #include<string>
 #include<vector>
 #include<cmath>
+// Nuclei
 #include"nucleus.h"
+#include"stablenucleus.h"
+#include"radioactivenucleus.h"
+// Particles
+#include"particle.h"
+
 using std::string;
 
 // Beginning of nucleus class 
@@ -32,12 +38,14 @@ int main()
 {
   try
   {
-    Nucleus test("Co", 60, 27, 5.272);
-    test.print_data();
-    return 0;
+    // Here auto is used to make objects on the heap, managed by shared_ptr's
+    auto Iron = std::make_shared<StableNucleus>("Fe", 55.845, 26);
+    Iron->printData();
+    // Particle Electron;
   }
   catch(const std::exception& e)
   {
-    std::cerr << e.what() << '\n';
+    std::cerr << "Exception: " << e.what() << std::endl;
+    return 1;
   }
 }

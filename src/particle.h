@@ -26,22 +26,7 @@ public:
   void setRestMass(double massIn) {restMass = massIn;}
   void setEnergy(double energyIn) {energy = energyIn;}
 
-  virtual void print_data() const;
+  virtual void printData() const;
 };
-
-// Parameterized constructor
-Particle::Particle(double massIn, double energyIn) : restMass{massIn}, energy{energyIn}
-{
-}
-
-Particle::~Particle()
-{
-  std::cout<<"Destroy Particle"<<std::endl;
-}
-
-void Particle::print_data() const
-{
-  std::cout << "Particle: Rest Mass = " << restMass << ", Energy = " << energy << std::endl;
-}
 
 #endif

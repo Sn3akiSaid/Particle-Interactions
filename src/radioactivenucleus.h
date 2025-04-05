@@ -1,5 +1,5 @@
-#ifndef UNSTABLENUCLEUS_H
-#define UNSTABLENUCLEUS_H
+#ifndef RADIOACTIVENUCLEUS_H
+#define RADIOACTIVENUCLEUS_H
 #include<iostream>
 #include<memory>
 #include<string>
@@ -8,7 +8,7 @@
 #include<initializer_list>
 #include"nucleus.h"
 
-class Unstable : public Nucleus
+class RadioactiveNucleus : public Nucleus
 {
 private:
  double lambda;

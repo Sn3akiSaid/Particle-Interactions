@@ -8,43 +8,48 @@
 #include<cmath>
 #include<initializer_list>
 
+class Photon;
+
 class Nucleus
 {
-private:
+protected:
   std::string nucleusType;
   double atomicMass;
   int atomicNumber;
+  double lambda;
+  bool decayed;
+  std::shared_ptr<Photon> emittedPhoton;
   bool isValidNucleus(const std::string& nucleusType) const;
-  bool isDecayed();
+
 public:
   // Constructors
-  Nucleus();
-  Nucleus(const std::string &nType, double aMassIn, int aNumIn, double lambdaIn);
-  ~Nucleus();
+  Nucleus(const std::string &nType = "none", double aMassIn = 0.0, int aNumberIn = 0, double lambdaIn = 0.0);
+  virtual ~Nucleus() = default;
+  Nucleus(const Nucleus& other);
+  Nucleus& operator=(const Nucleus& other);
+  Nucleus(Nucleus&& other) noexcept;
+  Nucleus& operator=(Nucleus&& other) noexcept;
 
-  // Getter functions
-  // double getE() const;
-  // double getPx() const;
-  // double getPy() const;
-  // double getPz() const;
+  // Getters
+  std::string getType() const {return nucleusType;}
+  double getAtomicMass() const {return atomicMass;}
+  int getAtomicNumber() const {return atomicNumber;}
+  double getDecay() const {return lambda;}
+  bool getDecayStatus() const {return decayed;}
+  std::shared_ptr<Photon> getEmittedPhoton() const {return emittedPhoton;}
 
-  // Setter functions
-  // void setE(double E);
-  // void setPx(double px);
-  // void setPy(double py);
-  // void setPz(double pz);
+  // Setters
+  void setType(std::string &nType) {nucleusType = nType;}
+  void setAtomicMass(double aMassIn) {atomicMass = aMassIn;}
+  void setAtomicNumber(int aNumberIn) {atomicNumber = aNumberIn;}
+  void setDecay(double lambdaIn) {lambda = lambdaIn;}
+  void setDecayed(bool hasDecayed) {decayed = hasDecayed;}
+  void setEmittedPhoton(const std::shared_ptr<Photon>& photon) {emittedPhoton = photon;}
 
-  // Function to print Nucleus data and its memory location
-  // void print_data() const;
-  virtual void Nucleus::print_data() const
-  {
-   std::cout << nucleusType << std::endl;
-  }
-
-  // Overloaded operator for summing 
-  // Nucleus operator+(const Nucleus &other) const;
-  // Dot product 
-  // double dot_product(const Nucleus &other) const;
+  // Virtual Methods for polymorphism
+  virtual bool isDecayed();
+  virtual void decay();
+  virtual void printData() const;
 };
 
 #endif
