@@ -41,16 +41,17 @@
     return *this;
   }
 
-  // StableNucleus::~StableNucleus() = default;
-
-  // Override base methods 
+  // Override base methods
+  // Override isDecayed 
   bool StableNucleus::isDecayed() {return false;}
 
+  // Override decay
   void StableNucleus::decay()
   {
     std::cout << "Stable Nucleus- Cannot Decay.\n" << std::endl;
   }
 
+  // Override printData
   void StableNucleus::printData() const
   {
     std::cout << "\nStable ";

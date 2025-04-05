@@ -107,8 +107,11 @@
       std::cout << "No photon energies defined for " << getType() << std::endl;
       return;
     }
+
+    // Set decay to true
     setDecayed(true);
 
+    // Emit photons with energies from list
     for (const auto& energy : photonEnergies)
     {
       auto photon = std::make_shared<Photon>(energy);
@@ -122,6 +125,7 @@
     }
   }
 
+  // Display radioactive nucleus data
   void RadioactiveNucleus::printData() const
   {
     std::cout << "\nRadioactive ";

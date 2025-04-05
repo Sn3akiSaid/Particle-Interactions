@@ -16,9 +16,11 @@ protected:
   std::string nucleusType;
   double atomicMass;
   int atomicNumber;
-  double lambda;
+  double lambda; // Decay constant 
   bool decayed;
   std::shared_ptr<Photon> emittedPhoton;
+
+  // Validate the nucleus type
   bool isValidNucleus(const std::string& nucleusType) const;
 
 public:
