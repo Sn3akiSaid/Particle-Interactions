@@ -56,7 +56,7 @@ std::vector<std::shared_ptr<Electron>> pairProduction(const std::shared_ptr<Phot
     return electrons;
   }
 
-  const double thersholdEnergy = 2 * electronMass;
+  const double thersholdEnergy = 2 * Constants::electronMass;
   double photonEnergy = photon->getEnergy();
 
   if (photonEnergy < thersholdEnergy)
