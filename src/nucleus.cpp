@@ -11,9 +11,6 @@
            nucleusType.find("Cs") != std::string::npos ||
            nucleusType.find("Na") != std::string::npos;
   }
-
-  // Nucleus::Nucleus() : nucleusType{"none"}, atomicMass{}, atomicNumber{}{} 
-
   // The parameterised constructor dynamically allocates the std::vector containing the four-vector elements
   Nucleus::Nucleus(const std::string &nType, double aMassIn, int aNumIn, double lambdaIn) :
   nucleusType{nType}, atomicMass{aMassIn}, atomicNumber{aNumIn}, lambda{lambdaIn}
@@ -42,10 +39,10 @@
   void Nucleus::printData() const
   {
     std::cout << "Nucleus: " << nucleusType 
-    << " || Atomic Mass: " << atomicMass 
-    << " || Atomic Number: " << atomicNumber 
-    << " || Lambda:" << lambda
-    << " || Decay Status: " << (decayed ? "Yes" : "No") << std::endl;
+              << " || Atomic Mass: " << atomicMass 
+              << " || Atomic Number: " << atomicNumber 
+              << " || Lambda:" << lambda
+              << " || Decay Status: " << (decayed ? "Yes" : "No") << std::endl;
 
     if (decayed && emittedPhoton)
     {
@@ -54,10 +51,67 @@
     }
   }
 
-  // bool Nucleus::getDecayStatus() const {return decayed;}
-  // std::shared_ptr<Photon> Nucleus::getEmittedPhoton() const {return emittedPhoton;}
-  // void Nucleus::setDecayed(bool hasDecayed) {decayed = hasDecayed;}
-  // void Nucleus::setEmittedPhoton(const std::shared_ptr<Photon>& photon)
-  // {
-  //   emittedPhoton = photon;
-  // }
+  // Copy Constructor
+  Nucleus::Nucleus(const Nucleus& other) :
+           nucleusType(other.nucleusType),
+           atomicMass(other.atomicMass),
+           atomicNumber(other.atomicNumber),
+           lambda(other.lambda),
+           decayed(other.decayed),
+           emittedPhoton(other.emittedPhoton)
+           {
+            std::cout << "Calling Nucleus Copy Constructor" << std::endl;
+           }
+  // Copy Assigment
+  Nucleus& Nucleus::operator=(const Nucleus& other)
+  {
+    std::cout << "Calling Nucleus Copy Assignment" << std::endl;
+    if (this != &other)
+    {
+      nucleusType = other.nucleusType;
+      atomicMass = other.atomicMass;
+      atomicNumber = other.atomicNumber;
+      lambda = other.lambda;
+      decayed = other.decayed;
+      emittedPhoton = other.emittedPhoton;
+    }
+    return *this;
+  }
+  // Move Constructor
+  Nucleus::Nucleus(Nucleus&& other) noexcept :
+           nucleusType(std::move(other.nucleusType)),
+           atomicMass(other.atomicMass),
+           atomicNumber(other.atomicNumber),
+           lambda(other.lambda),
+           decayed(other.decayed),
+           emittedPhoton(std::move(other.emittedPhoton))
+           {
+            std::cout << "Calling Nucleus Move Constructor" << std::endl;
+            // Resetting moved-from object
+            other.atomicMass = 0.0;
+            other.atomicNumber = 0;
+            other.lambda = 0.0;
+            other.decayed = false;
+           }
+  // Move Assignment
+  Nucleus& Nucleus::operator=(Nucleus&& other) noexcept
+  {
+    std::cout << "Calling Nucleus Move Assignment" << std::endl;
+    if (this != &other)
+    {
+      nucleusType = std::move(other.nucleusType);
+      atomicMass = other.atomicMass;
+      atomicNumber = other.atomicNumber;
+      lambda = other.lambda;
+      decayed = other.decayed;
+      emittedPhoton = std::move(other.emittedPhoton);
+
+      other.atomicMass = 0.0;
+      other.atomicNumber = 0;
+      other.lambda = 0.0;
+      other.decayed = false;
+      
+    }
+    return *this;
+  }
+
