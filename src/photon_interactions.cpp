@@ -6,6 +6,7 @@
 #include<memory>
 #include<stdexcept>
 
+// Simulates photoelectric effect by completely absorbing a photon
 double photoelectricEffect(const std::shared_ptr<Photon>& photon)
 {
   // Checks for photon
@@ -23,6 +24,9 @@ double photoelectricEffect(const std::shared_ptr<Photon>& photon)
   return energy;
 }
 
+// Simulates compton scaterring by scaterring photon off electron
+// Takes scatering angle in radians
+// Returns new energy
 double comptonEffect(const std::shared_ptr<Photon>& photon, double theta) // theta in radians
 {
   // Checks for photon
@@ -51,6 +55,9 @@ double comptonEffect(const std::shared_ptr<Photon>& photon, double theta) // the
   return newEnergy;
 }
 
+// Simulates pair production
+// Requires photon energy to be greater than 2*electron mass
+// Returns vector with created electron/positron pair 
 std::vector<std::shared_ptr<Electron>> pairProduction(const std::shared_ptr<Photon>& photon)
 {
   // Create the vector of electrons

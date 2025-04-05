@@ -1,7 +1,6 @@
 // PHYS 30762 Programming in C++
 // Assignment 5
 // Practice inheritance in C++ classes
-// See slides for guidance
 
 #include<iostream>
 #include<string>
@@ -27,14 +26,14 @@ int main()
 
     // Create the Nuclei
 
-    // Stable:
-
-    auto Iron = std::make_shared<StableNucleus>("Fe", 55.845, 26);
+    // Stable nucleus(type, atomic mass, atomic number):
+    // Wasn't sure if I should use the atomic mass 
+    // or the isotope mass so used isotope mass for Fe-56 of 55.934 
+    auto Iron = std::make_shared<StableNucleus>("Fe", 55.934, 26);
     cout << "Creating a stable nucleus: " << endl;
     Iron->printData();
     
-    // Unstable:
-
+    // Radioactive nuclei(type, atomic mass, atomic number, half life):
     auto Cesium = std::make_shared<RadioactiveNucleus>("Cs", 137.0, 55, 30.17);
     auto Sodium = std::make_shared<RadioactiveNucleus>("Na", 22.0, 11, 2.603);
     auto Cobalt = std::make_shared<RadioactiveNucleus>("Co", 60.0, 27, 5.272);
@@ -45,7 +44,7 @@ int main()
     Cobalt->printData();
 
     // Now put the nuclei in a vector to use polymorphism
-
+    // Uses vector of base class pointers to reference derived objects
     std::vector<std::shared_ptr<Nucleus>> nuclei = {Iron, Cesium, Sodium, Cobalt};
 
     // Show the decays
@@ -55,21 +54,24 @@ int main()
     // First see what happens when we decay the stable Fe-56 nucleus
     cout << "Attempting to decay stable Fe-56:\n" << endl;
     Iron->decay();
-    // Cesium->decay();
 
+    // Instantiate vector to collect the emitted photons
     std::vector<std::shared_ptr<Photon>> emittedPhotons;
 
+    // Decay the radioactive nuclei
     for (size_t i = 1; i < nuclei.size(); ++i)
     {
       cout << "\nDecaying " << nuclei[i]->getType() << ":" << endl;
       nuclei[i]->decay();
 
+      // Collect the emitted photons to use in interactions later
       if (nuclei[i]->getEmittedPhoton())
       {
         emittedPhotons.push_back(nuclei[i]->getEmittedPhoton());
       }
     }
 
+    // Start demo of the 3 Photon Interactions
     cout << "\n===== Photon Interactions =====\n" << endl;
 
     // Photoelectric effect with 1st photon
@@ -95,7 +97,8 @@ int main()
     {
       cout << "\n--- Pair Production ---\n" << endl;
       auto photon3 = emittedPhotons[2];
-      // Co-60 photons with energy > 2*m_e
+      // Co-60 photons have energy > 2*m_e
+      // so they are suitable for this interaction
       auto electronPair = pairProduction(photon3);
       cout << "Created " << electronPair.size() << " particles from pair production" << endl;
 

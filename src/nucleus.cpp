@@ -4,6 +4,7 @@
 #include<utility>
 #include<stdexcept>
 
+  // Check if nucleus is of the expected types
   bool Nucleus::isValidNucleus(const std::string& nType) const
   {
     return nucleusType.find("Fe") != std::string::npos || 
@@ -11,6 +12,7 @@
            nucleusType.find("Cs") != std::string::npos ||
            nucleusType.find("Na") != std::string::npos;
   }
+
   // The parameterised constructor dynamically allocates the std::vector containing the four-vector elements
   Nucleus::Nucleus(const std::string &nType, double aMassIn, int aNumIn, double lambdaIn) :
   nucleusType{nType}, atomicMass{aMassIn}, atomicNumber{aNumIn}, lambda{lambdaIn}
@@ -20,7 +22,8 @@
     {
       throw std::invalid_argument("Atomic mass cannot be negative.");
     }
-    if (atomicNumber < 1 || atomicNumber > 118) // Checks if the atomic number is a valid one according to the periodic table
+    // Check if the atomic number is a valid one according to the periodic table
+    if (atomicNumber < 1 || atomicNumber > 118)
     {
       throw std::invalid_argument("Atomic number must be within the range of atomic numbers of the periodic table.");
     }
@@ -30,12 +33,16 @@
     }
   }
 
+  // Return the nucleus decay status
   bool Nucleus::isDecayed() {return decayed;}
+
+  // Base implementation of decay to be overriden by derived classes
   void Nucleus::decay()
   {
     std::cout << "Base nucleus decay method called" << std::endl;
   }
 
+  // Display properties of nucleus and the decay status
   void Nucleus::printData() const
   {
     std::cout << "Nucleus: " << nucleusType 
@@ -52,16 +59,17 @@
   }
 
   // Copy Constructor
-  Nucleus::Nucleus(const Nucleus& other) :
-           nucleusType(other.nucleusType),
-           atomicMass(other.atomicMass),
-           atomicNumber(other.atomicNumber),
-           lambda(other.lambda),
-           decayed(other.decayed),
-           emittedPhoton(other.emittedPhoton)
-           {
-            std::cout << "Calling Nucleus Copy Constructor" << std::endl;
-           }
+  Nucleus::Nucleus(const Nucleus& other) 
+    : nucleusType(other.nucleusType),
+      atomicMass(other.atomicMass),
+      atomicNumber(other.atomicNumber),
+      lambda(other.lambda),
+      decayed(other.decayed),
+      emittedPhoton(other.emittedPhoton)
+      {
+        std::cout << "Calling Nucleus Copy Constructor" << std::endl;
+      }
+
   // Copy Assigment
   Nucleus& Nucleus::operator=(const Nucleus& other)
   {
@@ -77,6 +85,7 @@
     }
     return *this;
   }
+
   // Move Constructor
   Nucleus::Nucleus(Nucleus&& other) noexcept :
            nucleusType(std::move(other.nucleusType)),
@@ -87,12 +96,14 @@
            emittedPhoton(std::move(other.emittedPhoton))
            {
             std::cout << "Calling Nucleus Move Constructor" << std::endl;
+            
             // Resetting moved-from object
             other.atomicMass = 0.0;
             other.atomicNumber = 0;
             other.lambda = 0.0;
             other.decayed = false;
            }
+
   // Move Assignment
   Nucleus& Nucleus::operator=(Nucleus&& other) noexcept
   {
@@ -106,6 +117,7 @@
       decayed = other.decayed;
       emittedPhoton = std::move(other.emittedPhoton);
 
+      // Reset
       other.atomicMass = 0.0;
       other.atomicNumber = 0;
       other.lambda = 0.0;

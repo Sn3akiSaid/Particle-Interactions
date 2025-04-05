@@ -78,23 +78,30 @@
   // Destructor
   RadioactiveNucleus::~RadioactiveNucleus() = default;
 
+  // Add energy vvalue to photon emissions
   void RadioactiveNucleus::addPhotonEnergy(double energy)
   {
     photonEnergies.push_back(energy);
   }
 
+  // Return decay status
   bool RadioactiveNucleus::isDecayed()
   {
     return getDecayStatus();
   }
 
+  // Simulate radioactive decay
+  // Emits photons with specific energies
   void RadioactiveNucleus::decay()
   {
+    // Check if decayed
     if (isDecayed())
     {
       std::cout << getType() << " Nucleus has already decayed." << std::endl;
       return; 
     }
+
+    // Check if energies are defined
     if (photonEnergies.empty())
     {
       std::cout << "No photon energies defined for " << getType() << std::endl;
